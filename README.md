@@ -1,8 +1,8 @@
 # grunt-sqsp
 
 Grunt-based utilities for Squarespace themes, specifically
-deployment and internationalization. Developed in concjunction with
-[bighuman.com](http://bighuman.com)
+deployment and internationalization. Developed in conjunction with
+[Big Human](http://bighuman.com)
 
 ## Getting Started
 This plugin requires Grunt `0.4.x`
@@ -36,6 +36,8 @@ right away.
 In you Gruntfile, you can configure multiple targets, e.g. staging and
 your live site. For each target, this library exposes two tasks: build and deploy.
 Simply calling `grunt sqsp:target` will build first and then deploy.
+
+[Example Grunt Configuration](https://github.com/tholex/grunt-sqsp/wiki/Example-Grunt-Config)
 
 ## The "sqsp:target:build" task
 
