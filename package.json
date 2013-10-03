@@ -1,0 +1,54 @@
+{
+  "name": "grunt-sqsp",
+  "description": "Manage & Deploy I18n-ready Squarespace Themes to different sites. Developed in conjunction with Big Human (http://bighuman.com)",
+  "version": "0.1.0",
+  "homepage": "https://github.com/tholex/grunt-sqsp",
+  "author": {
+    "name": "Olex Ponomarenko",
+    "email": "tholex@gmail.com",
+    "url": "http://olex.co/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tholex/grunt-sqsp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tholex/grunt-sqsp/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/tholex/grunt-sqsp/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "i18n": "~0.4.x",
+    "ejs": "~0.8.x",
+    "prompt": "0.2.x"
+  },
+  "devDependencies": {
+    "grunt-contrib-clean": "0.4.x",
+    "grunt-contrib-nodeunit": "0.1.x",
+    "grunt": "0.4.x"
+  },
+  "peerDependencies": {
+    "grunt": "0.4.x"
+  },
+  "keywords": [
+    "gruntplugin",
+    "git",
+    "deploy",
+    "push",
+    "squarespace",
+    "i18n",
+    "internationalization",
+    "international"
+  ]
+}
