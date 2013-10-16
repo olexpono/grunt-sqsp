@@ -11,7 +11,7 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install ../grunt-sqsp --save-dev
+npm install grunt-sqsp --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
@@ -36,6 +36,8 @@ right away.
 In you Gruntfile, you can configure multiple targets, e.g. staging and
 your live site. For each target, this library exposes two tasks: build and deploy.
 Simply calling `grunt sqsp:target` will build first and then deploy.
+
+## Configuration
 
 [Example Grunt Configuration](https://github.com/tholex/grunt-sqsp/wiki/Example-Grunt-Config)
 
