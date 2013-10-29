@@ -55,9 +55,12 @@ function buildDirectory( options ) {
     buildTemplateDotConf(options);
   }
 
-  for (locale in options.locales) {
-    if (Object.prototype.hasOwnProperty.call(options.locales, locale)) {
-      buildForLocale(options, locale);
+  var localesArray = Object.keys(options.locales);
+  for (var locIndex = 0; locIndex < localesArray.length; locIndex++) {
+    if (Object.prototype.hasOwnProperty.call(options.locales, localesArray[locIndex])) {
+      gruntRef.log.writeln( "buildForLocale : then options.locales");
+      gruntRef.log.writeln(localesArray[locIndex]);
+      buildForLocale(options, localesArray[locIndex]);
     }
   }
 };
@@ -130,10 +133,6 @@ function buildNonI18nNavigations(options) {
   return nonI18nNavs;
 }
 
-function getLocaleList( options ) {
-  return Object.keys(options.locales);
-}
-
 function getLocaleSuffix( options, locale ) {
   return (locale == options.defaultLocale) ? "" : ("-" + locale);
 }
@@ -149,20 +148,26 @@ function buildForLocale( options, locale ) {
   var localeSuffix = getLocaleSuffix(options, locale);
   var localePrefix = getNiceLocalePrefix(options, locale);
   var localePathPrefix = getLocalePathPrefix(options, locale);
+
+  if (locale == options.defaultLocale) {
+    gruntRef.log.writeln("Building for DEFAULT locale.");
+    gruntRef.log.writeln(localeSuffix + "||" + localePrefix + "||" + localePathPrefix);
+    gruntRef.log.writeln("defaultLocale = " + options.defaultLocale);
+  }
   // For japan , prefix is "Japan ", suffix is "-jp"
-  gruntRef.log.writeln("Building for Locale " + locale + ": " + options.locales[locale]);
+  //  gruntRef.log.writeln("Building for Locale " + locale + ": ");
+  //  gruntRef.log.writeflags(options.locales[locale]);
   var templateData = {
     isDefaultLocale: (locale == options.defaultLocale),
-    locale: options.locales[locale],
+    currentLocale: options.locales[locale],
     localePrefix: localePrefix,
     localePathPrefix: localePathPrefix,
     localeSuffix: localeSuffix
   };
-
-  gruntRef.log.writeln("LocaleList :: " + getLocaleList(options).red);
   var ejsTranslator = new Translator({
+    gruntRef: gruntRef,
     locale: locale,
-    locales: getLocaleList(options),
+    locales: Object.keys(options.locales),
     defaultLocale: options.defaultLocale
   });
 
@@ -172,7 +177,9 @@ function buildForLocale( options, locale ) {
   gruntRef.file.expand({
     cwd: options.themeDir,
     filter: function( filepath ) {
-      return ( gruntRef.file.isFile( filepath ) && filepath.match( '\.ejs$' ) && !filepath.match( 'template.conf.ejs$' ));
+      return ( gruntRef.file.isFile( filepath )
+               && filepath.match( '\.ejs$' )
+               && !filepath.match( 'template.conf.ejs$' ));
     }
   }, "**" ).forEach( function( filepath ) {
     ejsTranslator.compile_file(options.themeDir + '/' + filepath, templateData, gruntRef, function( compiled_content ) {

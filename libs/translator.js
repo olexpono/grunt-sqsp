@@ -6,8 +6,25 @@ var gruntRef;
 var Translator = function(options) {
   this.locale = options.locale;
 
+  if (typeof(this.locale) === "string") {
+  } else {
+    options.gruntRef.log.writeln("WTF ERROR :: locale not a string!".red);
+  }
+
+  if (typeof(options.defaultLocale) === "string") {
+  } else {
+    options.gruntRef.log.writeln("WTF ERROR :: defaultLocale not a string!".red);
+  }
+
+  var localesArray;
+  if (this.locale === options.defaultLocale) {
+    localesArray = [this.locale];
+  } else {
+    localesArray = [this.locale, options.defaultLocale];
+  }
+
   i18n.configure({
-    locales: options.locales,
+    locales: localesArray,
     directory: './locales',
     defaultLocale: options.defaultLocale,
     updateFiles: true
@@ -23,17 +40,22 @@ Translator.prototype.compile_file = function(fullpath, templateData, gruntRef, c
 
   /* optional templateData */
   if (templateData == undefined) { templateData = {}; };
-  if (typeof(templateData) == "function" &&
+  /* if (typeof(templateData) == "function" &&
       callback == undefined) {
     callback = templateData;
   }
+  */
 
   /* Set up the rendering data / context */
   templateData["t"] = i18n.__;
+
   rendered = ejs.render(file, templateData);
 
-  if (callback != undefined) callback.call(this, rendered);
-  else return rendered;
+  if (callback != undefined) {
+    callback(rendered);
+  } else {
+    return rendered;
+  }
 }
 
 module.exports = Translator;
