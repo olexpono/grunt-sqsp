@@ -1,7 +1,7 @@
 {
   "name": "grunt-sqsp",
   "description": "Manage & Deploy I18n-ready Squarespace Themes to different sites. Developed in conjunction with Big Human (http://bighuman.com)",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/tholex/grunt-sqsp",
   "author": {
     "name": "Olex Ponomarenko",
