@@ -1,3 +1,7 @@
+# No longer maintained
+This project hasn't been looked at in a long time. If you find this or work on an alternative, let me know and I'll post a link to that.    
+
+
 # grunt-sqsp
 
 Grunt-based utilities for Squarespace themes, specifically
